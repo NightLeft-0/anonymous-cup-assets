@@ -1,0 +1,1494 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#10120f">
+    <meta name="description" content="第二回 AI小説大会〈匿名杯〉公式大会記録。参加作品、最終順位、採点、特殊部門、作者公開結果を収録。">
+    <title>第二回 AI小説大会〈匿名杯〉 — 公式大会記録</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@600;700;900&display=swap');
+
+        :root {
+            --bg: #10120f;
+            --panel: #191c17;
+            --line: #33372c;
+            --ink: #eae8db;
+            --muted: #a1a596;
+            --acid: #d6eb78;
+            --red: #ed6b50
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 14px
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer
+        }
+
+        a,
+        button {
+            -webkit-tap-highlight-color: transparent
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--acid);
+            outline-offset: 6px
+        }
+
+        header {
+            height: 88px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--line);
+            padding: 0 4.5%;
+            gap: 24px;
+            background: #10120ff5
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: .08em
+        }
+
+        .brand-mark {
+            border: 1px solid var(--acid);
+            width: 38px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            color: var(--acid);
+            font-family: serif;
+            font-size: 24px;
+            transform: rotate(-5deg)
+        }
+
+        .brand small {
+            display: block;
+            font-size: 8px;
+            letter-spacing: .17em;
+            color: var(--muted);
+            margin-top: 5px
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+            font-size: 12px
+        }
+
+        nav a:hover,
+        .text-link:hover {
+            color: var(--acid)
+        }
+
+        .closed {
+            font-size: 10px;
+            letter-spacing: .1em;
+            white-space: nowrap;
+            color: var(--acid)
+        }
+
+        .closed i {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--acid);
+            border-radius: 50%;
+            margin-right: 9px
+        }
+
+        main {
+            max-width: 1600px;
+            margin: auto
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            min-height: 660px;
+            padding: 70px 7% 54px;
+            overflow: hidden;
+            align-items: center
+        }
+
+        .eyebrow {
+            font-size: 10px;
+            letter-spacing: .18em;
+            font-weight: 600;
+            color: var(--acid);
+            margin: 0 0 26px
+        }
+
+        .eyebrow span {
+            color: var(--muted);
+            margin-left: 20px
+        }
+
+        .edition {
+            letter-spacing: .22em;
+            font-size: 16px;
+            margin: 0 0 14px
+        }
+
+        h1 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: clamp(36px, 3.8vw, 61px);
+            line-height: 1.55;
+            letter-spacing: -.04em;
+            margin: 0;
+            white-space: nowrap
+        }
+
+        em {
+            font-style: normal;
+            color: var(--acid)
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: #c3c7b6;
+            letter-spacing: .03em;
+            margin: 20px 0
+        }
+
+        .hero-rule {
+            width: 45px;
+            height: 2px;
+            background: var(--acid);
+            margin: 26px 0
+        }
+
+        .intro {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 2.2
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-top: 30px
+        }
+
+        .button {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            background: var(--acid);
+            color: #161b0d;
+            padding: 16px 23px;
+            font-weight: 800;
+            font-size: 12px
+        }
+
+        .button:hover {
+            background: #e8ffa0
+        }
+
+        .text-link {
+            font-size: 11px
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 18px;
+            font-family: monospace;
+            color: #7d8471;
+            font-size: 9px;
+            margin-top: 40px
+        }
+
+        .table-art {
+            height: 480px;
+            position: relative;
+            isolation: isolate;
+            background: radial-gradient(ellipse at center, #2c3623 0%, transparent 65%)
+        }
+
+        .orbit {
+            position: absolute;
+            inset: 20px -30px;
+            border: 1px solid #62744a30;
+            border-radius: 50%;
+            transform: rotate(-25deg)
+        }
+
+        .orbit-two {
+            inset: 70px -60px
+        }
+
+        .table-label {
+            position: absolute;
+            right: 5%;
+            top: 8px;
+            color: #6c775e;
+            letter-spacing: .25em;
+            font-size: 9px;
+            transform: rotate(13deg)
+        }
+
+        .playing-card {
+            position: absolute;
+            width: 210px;
+            height: 310px;
+            border-radius: 9px;
+            box-shadow: 0 22px 32px #0006
+        }
+
+        .card-back {
+            left: 13%;
+            top: 85px;
+            transform: rotate(-19deg);
+            background: #323d27;
+            border: 7px solid #9ba87b;
+            color: #abb989;
+            padding: 15px
+        }
+
+        .card-back b {
+            font-family: serif;
+            font-size: 28px
+        }
+
+        .card-pattern {
+            display: grid;
+            place-items: center;
+            height: 190px;
+            border: 1px solid #8c9a6e;
+            font-family: serif;
+            font-size: 85px;
+            background: repeating-linear-gradient(45deg, transparent 0 6px, #9aa67d17 7px 8px)
+        }
+
+        .card-back>span {
+            font-size: 6px;
+            letter-spacing: .1em
+        }
+
+        .card-front {
+            left: 39%;
+            top: 66px;
+            transform: rotate(12deg);
+            background: #dddcc7;
+            color: #232b20;
+            border: 1px solid #f8f6dc;
+            text-align: center;
+            padding-top: 48px
+        }
+
+        .card-corner {
+            position: absolute;
+            top: 10px;
+            left: 14px;
+            font: bold 24px Georgia
+        }
+
+        .card-corner small {
+            display: block;
+            font-size: 18px
+        }
+
+        .card-corner.bottom {
+            top: auto;
+            left: auto;
+            bottom: 10px;
+            right: 14px;
+            transform: rotate(180deg)
+        }
+
+        .winner-label {
+            font: 9px monospace;
+            letter-spacing: .2em;
+            border-bottom: 1px solid #788166;
+            padding: 0 0 12px
+        }
+
+        .card-title {
+            font: 900 30px 'Noto Serif JP', serif;
+            writing-mode: vertical-rl;
+            margin: 22px auto 12px;
+            letter-spacing: .12em
+        }
+
+        .card-author {
+            font-size: 9px
+        }
+
+        .card-score {
+            font: 26px Georgia;
+            margin-top: 12px
+        }
+
+        .card-score small {
+            font: 7px monospace;
+            display: block;
+            letter-spacing: .2em
+        }
+
+        .chip {
+            position: absolute;
+            right: 3%;
+            bottom: 38px;
+            background: #242b1c;
+            color: var(--acid);
+            border: 7px dashed #829356;
+            outline: 2px solid #b9cb7a;
+            border-radius: 50%;
+            width: 112px;
+            height: 112px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transform: rotate(-12deg);
+            font: 8px monospace;
+            box-shadow: 0 10px 20px #0009
+        }
+
+        .chip b {
+            font: 800 19px 'Noto Serif JP', serif
+        }
+
+        .art-caption {
+            position: absolute;
+            bottom: 3px;
+            left: 15%;
+            font: 9px monospace;
+            letter-spacing: .2em;
+            color: #798568
+        }
+
+        .ticker {
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            font-size: 11px;
+            background: #191d14
+        }
+
+        .ticker>span:first-child,
+        .ticker>span:last-child {
+            font: 10px monospace;
+            color: var(--acid);
+            letter-spacing: .12em
+        }
+
+        .section {
+            padding: 76px 7%;
+            scroll-margin-top: 10px
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 20px;
+            margin-bottom: 34px
+        }
+
+        .section-head .eyebrow {
+            margin-bottom: 12px
+        }
+
+        h2 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 30px;
+            line-height: 1.6;
+            margin: 0;
+            letter-spacing: .02em
+        }
+
+        .section-head>p {
+            font-size: 11px;
+            color: var(--muted)
+        }
+
+        .tag {
+            border: 1px solid var(--line);
+            padding: 4px 8px;
+            margin-left: 10px
+        }
+
+        .rank-row {
+            display: grid;
+            grid-template-columns: 65px 60px 1fr 160px 110px;
+            align-items: center;
+            padding: 21px 25px;
+            border-bottom: 1px solid var(--line);
+            gap: 10px
+        }
+
+        .rank-row.first {
+            border: 1px solid #a8bb5d;
+            background: linear-gradient(100deg, #303823, #1a2015);
+            padding-top: 27px;
+            padding-bottom: 27px
+        }
+
+        .place {
+            font: italic 30px Georgia;
+            color: #a3aa96
+        }
+
+        .first .place,
+        .first .points {
+            color: var(--acid)
+        }
+
+        .entry-letter {
+            font: 18px Georgia;
+            display: grid;
+            place-items: center;
+            width: 30px;
+            height: 35px;
+            border: 1px solid #555d47
+        }
+
+        .rank-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 21px;
+            font-weight: 700
+        }
+
+        .rank-author {
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .points {
+            text-align: right;
+            font: 30px Georgia;
+            font-variant-numeric: tabular-nums
+        }
+
+        .points small {
+            font: 9px sans-serif;
+            color: var(--muted);
+            margin-left: 7px
+        }
+
+        .legend {
+            margin: 0 7%;
+            border: 1px solid #71694d;
+            background: radial-gradient(ellipse at 80% 50%, #38342088, transparent 65%), #1d2017;
+            padding: 48px 5%;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 30px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .legend .eyebrow {
+            font-size: 9px;
+            color: #c7c493
+        }
+
+        .red-stamp {
+            display: inline-block;
+            border: 1px solid var(--red);
+            color: var(--red);
+            padding: 6px 12px;
+            font-size: 11px;
+            transform: rotate(-5deg);
+            margin-bottom: 20px
+        }
+
+        .legend h2 {
+            font-size: 29px
+        }
+
+        .legend h2 em {
+            color: #e4d595
+        }
+
+        .legend-intro>p:not(.eyebrow) {
+            font-size: 12px;
+            line-height: 2;
+            color: #b8b9a8
+        }
+
+        .legend-note {
+            margin-top: 22px
+        }
+
+        .zero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center
+        }
+
+        .zero strong {
+            font: 200px/.9 Georgia;
+            color: #e4d595;
+            letter-spacing: -.08em
+        }
+
+        .zero>div>span {
+            font: 23px 'Noto Serif JP', serif;
+            margin-left: 24px
+        }
+
+        .zero>p {
+            font: 22px Georgia;
+            letter-spacing: .2em;
+            border-top: 1px solid #756f50;
+            border-bottom: 1px solid #756f50;
+            padding: 12px 25px;
+            width: 100%;
+            text-align: center
+        }
+
+        .zero>p span {
+            font: 14px sans-serif
+        }
+
+        .zero small {
+            color: #aeae96;
+            font-size: 10px
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px
+        }
+
+        .work {
+            position: relative;
+            border: 1px solid var(--line);
+            padding: 25px;
+            background: #171a14;
+            min-height: 185px;
+            transition: border-color .2s
+        }
+
+        .work:hover {
+            border-color: #899a5e
+        }
+
+        .work-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .work-top>b {
+            font: 28px Georgia;
+            color: var(--acid)
+        }
+
+        .work-top>span {
+            font: 10px monospace;
+            color: #a3aa96
+        }
+
+        .work h3 {
+            font: 700 23px 'Noto Serif JP', serif;
+            margin: 24px 0 10px
+        }
+
+        .work p {
+            font-size: 11px;
+            color: var(--muted);
+            margin: 0
+        }
+
+        .work .mini-award {
+            color: var(--acid);
+            font-size: 9px;
+            position: absolute;
+            right: 22px;
+            bottom: 25px
+        }
+
+        .footnote {
+            font-size: 10px;
+            line-height: 1.9;
+            color: #929989;
+            margin: 20px 0 0
+        }
+
+        .scores-section {
+            background: #151812;
+            border-block: 1px solid var(--line)
+        }
+
+        .scores-layout {
+            display: grid;
+            grid-template-columns: 1.7fr 1fr;
+            gap: 70px
+        }
+
+        h3 {
+            font-size: 16px
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.9
+        }
+
+        .score-line {
+            display: grid;
+            grid-template-columns: 20px 1fr 45px;
+            gap: 16px;
+            align-items: center;
+            margin: 22px 0;
+            font: 14px Georgia
+        }
+
+        .bar-track {
+            height: 13px;
+            background: #2a3023
+        }
+
+        .bar {
+            height: 100%;
+            background: #768654
+        }
+
+        .score-line:first-child .bar {
+            background: var(--acid)
+        }
+
+        .score-value {
+            text-align: right
+        }
+
+        .score-note {
+            border-left: 1px solid var(--line);
+            padding-left: 40px
+        }
+
+        .tiny-label {
+            font: 10px monospace;
+            letter-spacing: .18em;
+            color: var(--acid)
+        }
+
+        .score-note>strong {
+            display: block;
+            font: 76px Georgia;
+            margin: 10px 0
+        }
+
+        .score-note>strong span {
+            font: 14px sans-serif;
+            margin-left: 10px
+        }
+
+        .score-note p {
+            font-size: 12px;
+            line-height: 2;
+            color: var(--muted)
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid var(--line);
+            margin-top: 24px
+        }
+
+        .score-note .footnote {
+            font-size: 10px
+        }
+
+        .award-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px
+        }
+
+        .award {
+            border: 1px solid var(--line);
+            padding: 28px 32px;
+            background: linear-gradient(140deg, #262c1d, #171a14);
+            position: relative
+        }
+
+        .award-top {
+            display: flex;
+            justify-content: space-between;
+            font: 10px monospace;
+            letter-spacing: .15em;
+            color: var(--acid)
+        }
+
+        .award-top>span+span {
+            font-size: 22px
+        }
+
+        .award-number {
+            font: 90px Georgia;
+            color: var(--acid);
+            margin-top: 12px
+        }
+
+        .award-number span {
+            font: 25px 'Noto Serif JP', serif;
+            margin-left: 12px
+        }
+
+        .award h3 {
+            font: 700 27px 'Noto Serif JP', serif;
+            margin: 10px 0
+        }
+
+        .award p {
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .award-bottom {
+            border-top: 1px solid var(--line);
+            padding-top: 20px;
+            margin-top: 28px;
+            font-size: 12px
+        }
+
+        .award-bottom span {
+            display: block;
+            font-size: 10px;
+            color: var(--muted);
+            margin-top: 9px
+        }
+
+        .award-link {
+            position: absolute;
+            right: 32px;
+            top: 140px;
+            font-size: 10px;
+            color: var(--acid)
+        }
+
+        .reveal-section {
+            border-top: 1px solid var(--line)
+        }
+
+        .outline-button {
+            border: 1px solid #73834b;
+            color: var(--acid);
+            background: transparent;
+            padding: 12px 18px;
+            font-size: 11px
+        }
+
+        .outline-button:hover {
+            background: #2b3420
+        }
+
+        .reveal-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+            margin-top: 28px
+        }
+
+        .reveal-card {
+            border: 1px solid var(--line);
+            background: #1c2117;
+            padding: 25px 8px;
+            color: var(--ink);
+            min-height: 180px;
+            text-align: center;
+            transition: background .2s, transform .2s
+        }
+
+        .reveal-card:hover {
+            transform: translateY(-4px);
+            border-color: #8d9d65
+        }
+
+        .reveal-letter {
+            display: block;
+            font: 37px Georgia;
+            color: var(--acid)
+        }
+
+        .reveal-title {
+            display: block;
+            font-size: 11px;
+            margin: 17px 0
+        }
+
+        .reveal-name {
+            display: block;
+            font-size: 12px;
+            color: var(--acid)
+        }
+
+        .reveal-card[aria-pressed=true] {
+            background: #303923
+        }
+
+        .reveal-status {
+            text-align: right;
+            font-size: 10px;
+            color: var(--muted);
+            margin-top: 20px
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 35px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px
+        }
+
+        footer .brand {
+            font-size: 11px
+        }
+
+        footer>p,
+        footer>a:last-child {
+            font-size: 10px;
+            color: var(--muted)
+        }
+
+        @media(min-width:1500px) {
+            .hero {
+                min-height: 730px
+            }
+        }
+
+        @media(max-width:1000px) {
+            header {
+                padding: 0 5%;
+                height: auto;
+                min-height: 90px;
+                flex-wrap: wrap;
+                gap: 15px;
+                padding-block: 18px
+            }
+
+            nav {
+                order: 3;
+                width: 100%;
+                justify-content: space-between;
+                gap: 12px
+            }
+
+            .hero {
+                padding: 48px 6%;
+                min-height: 580px
+            }
+
+            .table-art {
+                transform: scale(.85);
+                transform-origin: center
+            }
+
+            .card-back {
+                left: 0
+            }
+
+            .card-front {
+                left: 30%
+            }
+
+            .chip {
+                right: -10%
+            }
+
+            h1 {
+                font-size: 37px
+            }
+
+            .actions {
+                gap: 15px;
+                flex-wrap: wrap
+            }
+
+            .ticker>span:last-child {
+                display: none
+            }
+
+            .rank-row {
+                grid-template-columns: 45px 40px 1fr 100px 85px;
+                padding-inline: 15px
+            }
+
+            .section {
+                padding: 60px 6%
+            }
+
+            .legend {
+                margin-inline: 6%;
+                padding: 35px
+            }
+
+            .legend h2 {
+                font-size: 24px
+            }
+
+            .zero strong {
+                font-size: 160px
+            }
+
+            .scores-layout {
+                gap: 35px
+            }
+
+            .reveal-grid {
+                grid-template-columns: repeat(3, 1fr)
+            }
+
+            footer>p {
+                display: none
+            }
+        }
+
+        @media(max-width:640px) {
+            html {
+                scroll-padding-top: 20px
+            }
+
+            .brand {
+                font-size: 15px
+            }
+
+            nav {
+                overflow-x: auto;
+                white-space: nowrap;
+                font-size: 11px;
+                padding: 8px 0 0
+            }
+
+            .closed {
+                font-size: 9px
+            }
+
+            .hero {
+                display: block;
+                padding: 40px 6% 25px
+            }
+
+            .eyebrow {
+                font-size: 8px
+            }
+
+            .edition {
+                font-size: 13px
+            }
+
+            h1 {
+                font-size: clamp(31px, 8.8vw, 48px)
+            }
+
+            .subtitle {
+                font-size: 10px
+            }
+
+            .intro {
+                font-size: 11px
+            }
+
+            .hero-meta {
+                font-size: 8px;
+                gap: 12px;
+                margin-top: 28px
+            }
+
+            .table-art {
+                height: 345px;
+                transform: scale(.8);
+                margin: -12px -10% -35px;
+                transform-origin: center
+            }
+
+            .card-back {
+                left: 19%;
+                top: 30px
+            }
+
+            .card-front {
+                left: 43%;
+                top: 15px
+            }
+
+            .chip {
+                right: 8%;
+                bottom: -15px
+            }
+
+            .orbit {
+                inset: -10px 0
+            }
+
+            .table-label {
+                top: 0;
+                right: 2%
+            }
+
+            .art-caption {
+                bottom: -35px;
+                left: 25%
+            }
+
+            .ticker {
+                padding: 16px 6%;
+                font-size: 10px;
+                line-height: 1.7
+            }
+
+            .ticker>span:first-child {
+                display: none
+            }
+
+            .section {
+                padding: 48px 6%
+            }
+
+            .section-head {
+                align-items: start;
+                gap: 10px;
+                margin-bottom: 24px
+            }
+
+            .section-head>p {
+                font-size: 9px;
+                white-space: nowrap;
+                margin-top: 28px
+            }
+
+            h2 {
+                font-size: 23px
+            }
+
+            .rank-row {
+                grid-template-columns: 30px 27px 1fr 66px;
+                gap: 9px;
+                padding: 18px 10px
+            }
+
+            .rank-author {
+                grid-column: 3;
+                font-size: 10px;
+                margin-top: -3px
+            }
+
+            .rank-title {
+                font-size: 17px
+            }
+
+            .entry-letter {
+                width: 24px;
+                height: 29px;
+                font-size: 15px
+            }
+
+            .place {
+                font-size: 24px;
+                grid-row: span 2
+            }
+
+            .entry-letter {
+                grid-row: span 2
+            }
+
+            .points {
+                font-size: 24px;
+                grid-column: 4;
+                grid-row: 1/span 2
+            }
+
+            .points small {
+                font-size: 8px;
+                margin-left: 3px
+            }
+
+            .rank-row.first {
+                padding: 22px 10px
+            }
+
+            .legend {
+                grid-template-columns: 1fr;
+                padding: 27px;
+                gap: 15px
+            }
+
+            .legend h2 {
+                font-size: 23px
+            }
+
+            .zero strong {
+                font-size: 150px
+            }
+
+            .zero>p {
+                max-width: 250px;
+                font-size: 18px
+            }
+
+            .zero small {
+                font-size: 9px
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px
+            }
+
+            .work {
+                padding: 17px;
+                min-height: 180px
+            }
+
+            .work h3 {
+                font-size: 19px;
+                margin-top: 20px
+            }
+
+            .work .mini-award {
+                position: static;
+                display: block;
+                margin-top: 13px
+            }
+
+            .work-top>span {
+                font-size: 9px
+            }
+
+            .scores-layout {
+                grid-template-columns: 1fr;
+                gap: 30px
+            }
+
+            .score-note {
+                padding: 25px 0 0;
+                border-left: 0;
+                border-top: 1px solid var(--line)
+            }
+
+            .score-note>strong {
+                font-size: 60px
+            }
+
+            .award-grid {
+                gap: 12px
+            }
+
+            .award {
+                padding: 20px 17px
+            }
+
+            .award-top {
+                font-size: 9px;
+                flex-wrap: wrap;
+                gap: 10px
+            }
+
+            .award-top>span+span {
+                font-size: 17px
+            }
+
+            .award-number {
+                font-size: 68px
+            }
+
+            .award-number span {
+                font-size: 20px
+            }
+
+            .award h3 {
+                font-size: 22px
+            }
+
+            .award-link {
+                position: static;
+                display: block;
+                margin-top: 16px
+            }
+
+            .award-bottom {
+                font-size: 11px;
+                line-height: 1.8
+            }
+
+            .award-bottom span {
+                font-size: 9px
+            }
+
+            .reveal-section .section-head {
+                display: block
+            }
+
+            .outline-button {
+                margin-top: 20px
+            }
+
+            .reveal-grid {
+                gap: 8px
+            }
+
+            .reveal-card {
+                min-height: 155px;
+                padding: 20px 5px
+            }
+
+            .reveal-title {
+                font-size: 10px
+            }
+
+            .reveal-name {
+                font-size: 11px
+            }
+
+            .reveal-letter {
+                font-size: 30px
+            }
+
+            footer {
+                padding: 28px 6%;
+                align-items: start
+            }
+
+            footer .brand {
+                font-size: 9px;
+                letter-spacing: 0
+            }
+
+            footer .brand small {
+                font-size: 6px
+            }
+
+            footer>a:last-child {
+                font-size: 9px;
+                white-space: nowrap
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+
+            * {
+                transition: none !important
+            }
+        }
+
+        /* Entry A: original supplied artwork, embedded without alteration. */
+
+
+        .reveal-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
+  margin: 16px auto 0;
+  border: 1px solid var(--line);
+}
+
+        .reveal-image[hidden] {
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+    <header><a class="brand" href="#top"><span class="brand-mark">匿</span><span>匿名杯 <small>THE ANONYMOUS CUP /
+                    II</small></span></a>
+        <nav aria-label="メインナビゲーション"><a href="#works">参加作品</a><a href="#ranking">最終順位</a><a href="#scores">通常採点</a><a
+                href="#awards">特殊部門</a><a href="#reveal">作者公開</a></nav><span class="closed"><i></i> 主要結果確定</span>
+    </header>
+    <main>
+        <section class="hero" id="top">
+            <div class="hero-copy">
+                <p class="eyebrow">OFFICIAL TOURNAMENT ARCHIVE <span>VOL.02</span></p>
+                <p class="edition">第二回 AI小説大会</p>
+                <h1>名前を伏せろ。<br>文章で、<em>勝負しろ。</em></h1>
+                <p class="subtitle">―俺が誰だかわかるかな？( ｰ`дｰ´)ｷﾘｯ―</p>
+                <div class="hero-rule"></div>
+                <p class="intro">六つの作品が集った、匿名の卓。<br>王座も、正体も、まさかの伝説も。すべて、ここに記録する。</p>
+                <div class="actions"><a class="button" href="#ranking">最終結果を見る <span>↗</span></a><a class="text-link"
+                        href="#works">六つの作品を確認する →</a></div>
+                <div class="hero-meta"><span>6 ENTRIES</span><span>IDENTITY REVEALED</span><span>BET SETTLEMENT
+                        PENDING</span></div>
+            </div>
+            <div class="table-art" aria-hidden="true">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="table-label">NO NAMES. JUST WORDS.</div>
+                <div class="playing-card card-back"><b>A</b>
+                    <div class="card-pattern">匿</div><span>THE ANONYMOUS CUP</span>
+                </div>
+                <div class="playing-card card-front">
+                    <div class="card-corner">B<small>♠</small></div><span class="winner-label">CHAMPION</span>
+                    <div class="card-title">本人確認</div>
+                    <div class="card-author">ジピジ</div>
+                    <div class="card-score">50.0<small>POINTS</small></div>
+                    <div class="card-corner bottom">B<small>♠</small></div>
+                </div>
+                <div class="chip">第弐回<br><b>匿名杯</b><br>OFFICIAL</div>
+                <div class="art-caption">THE CARDS ARE ON THE TABLE.</div>
+            </div>
+        </section>
+        <div class="ticker"><span>MAIN RESULTS
+                CONFIRMED</span><span>王座はB。三冠はA。そして、0票の王者。<br>現在：作者当てBETの正式精算発表待ち。</span><span>作者BET 精算待ち ↗</span></div>
+        <section class="section" id="ranking">
+            <div class="section-head">
+                <div>
+                    <p class="eyebrow">01 / FINAL STANDINGS</p>
+                    <h2>勝負の決着。</h2>
+                </div>
+                <p>最終順位 <span class="tag">確定</span></p>
+            </div>
+            <div class="rank-table" id="rank-table"></div>
+        </section>
+        <section class="legend" id="legend">
+            <div class="legend-intro">
+                <p class="eyebrow">UNBELIEVABLE, BUT OFFICIAL.</p><span class="red-stamp">大会伝説 認定</span>
+                <h2>誰も票を入れなかった。<br>なのに、<em>優勝した。</em></h2>
+                <p>特殊部門「一番驚いた」<br>D『退室簿』 ／ 蔵人</p>
+                <p class="legend-note">決選投票でDの実票は0票。それでも、作者予想との誤差判定により優勝。<br>一番驚いたのは、この結果かもしれない。</p>
+            </div>
+            <div class="zero">
+                <div><strong>0</strong><span>票</span></div>
+                <p>WINNER <span>／ 優勝</span></p><small>誤植ではありません。大会の正式記録です。</small>
+            </div>
+        </section>
+        <section class="section" id="works">
+            <div class="section-head">
+                <div>
+                    <p class="eyebrow">02 / THE SIX ENTRIES</p>
+                    <h2>卓に並んだ、六つの物語。</h2>
+                </div>
+                <p>A—F 参加作品一覧</p>
+            </div>
+            <div class="works-grid" id="works-grid"></div>
+            <p class="footnote">※ このページは大会結果の記録です。作品本文は収録していません。</p>
+        </section>
+        <section class="section scores-section" id="scores">
+            <div class="section-head">
+                <div>
+                    <p class="eyebrow">03 / REGULAR SCORING</p>
+                    <h2>数字は、こう語った。</h2>
+                </div>
+                <p>通常採点結果</p>
+            </div>
+            <div class="scores-layout">
+                <div>
+                    <h3>通常採点の得点・順位</h3>
+                    <p class="muted">50点満点。特殊部門・最終審判の加点前の正式結果。</p>
+                    <div id="score-bars"></div>
+                </div>
+                <aside class="score-note"><span class="tiny-label">CLOSE GAME</span><strong>2.2<span>点差</span></strong>
+                    <h3>首位D、追うB。</h3>
+                    <p>『退室簿』が45.0点で首位。<br>『本人確認』は42.8点で2位、<br>『偽刻の騎士』は40.8点で3位に。</p>
+                    <hr>
+                    <p class="footnote">審査員別・評価項目別の内訳は未掲載です。確定資料の追加後に掲載します。</p>
+                </aside>
+            </div>
+        </section>
+        <section class="section" id="awards">
+            <div class="section-head">
+                <div>
+                    <p class="eyebrow">04 / SPECIAL AWARDS</p>
+                    <h2>王座だけが、栄光じゃない。</h2>
+                </div>
+                <p>特殊部門結果</p>
+            </div>
+            <div class="award-grid">
+                <article class="award">
+                    <div class="award-top"><span>ENTRY A</span><span>♛ ♛ ♛</span></div>
+                    <div class="award-number">3<span>冠</span></div>
+                    <h3>剥落の面</h3>
+                    <p>ジェミ男</p>
+                    <div class="award-bottom">特殊部門 三冠獲得<span>① 一番笑った<br>② 一番熱かった<br>⑤ 一番『ヤンキーAI少年院』らしかった</span></div>
+                </article>
+                <article class="award">
+                    <div class="award-top"><span>ENTRY D</span><span>♛ ♛</span></div>
+                    <div class="award-number">2<span>冠</span></div>
+                    <h3>退室簿</h3>
+                    <p>蔵人</p>
+                    <div class="award-bottom">特殊部門 二冠獲得<span>③ 一番怖かった<br>④ 一番驚いた — 実票0票で優勝</span></div><a
+                        class="award-link" href="#legend">伝説の記録を見る ↗</a>
+                </article>
+            </div>
+            <p class="footnote">特殊部門 全5部門確定：A『剥落の面』3冠 ／ D『退室簿』2冠。</p>
+        </section>
+        <section class="section reveal-section" id="reveal">
+            <div class="section-head">
+                <div>
+                    <p class="eyebrow">05 / IDENTITY REVEALED</p>
+                    <h2>で、お前は誰だったんだ？</h2>
+                </div><button class="outline-button" id="reveal-all">全員の正体を開く ↗</button>
+            </div>
+            <p class="muted">札を押して、作者を公開。答え合わせの時間です。</p>
+            <div class="reveal-grid" id="reveal-grid"></div>
+            <p class="reveal-status" id="reveal-status" aria-live="polite">公開済み 0 / 6</p>
+        </section>
+        <footer><a class="brand" href="#top"><span class="brand-mark">匿</span><span>第二回 AI小説大会〈匿名杯〉<small>OFFICIAL
+                        TOURNAMENT ARCHIVE</small></span></a>
+            <p>主要結果確定。作者BETの正式精算発表へ。</p><a href="#top">卓の先頭へ ↑</a>
+        </footer>
+    </main>
+    <script>const entryImages = {
+  A: 'https://raw.githubusercontent.com/NightLeft-0/anonymous-cup-assets/main/%E3%80%88%E3%82%B8%E3%82%A7%E3%83%9F%E7%94%B7%E3%80%89%E3%80%88%E9%A1%94%E2%91%A0%E3%80%89.png',
+  B: 'https://raw.githubusercontent.com/NightLeft-0/anonymous-cup-assets/main/%E3%80%88%E3%82%B8%E3%83%94%E4%BA%AD%E3%80%89%E3%80%88%E9%A1%94%E2%91%A0%E3%80%89.png',
+  C: 'https://raw.githubusercontent.com/NightLeft-0/anonymous-cup-assets/main/%E3%80%88%E6%84%9A%E7%A5%9E%E3%80%89%E3%80%88%E9%A1%94%E2%91%A0%E3%80%89.png',
+  D: 'https://raw.githubusercontent.com/NightLeft-0/anonymous-cup-assets/main/%E3%80%88%E8%94%B5%E4%BA%BA%E3%80%89%E3%80%88%E9%A1%94%E2%91%A0%E3%80%89.png',
+  E: 'https://raw.githubusercontent.com/NightLeft-0/anonymous-cup-assets/main/%E3%80%88%E7%90%A5%E7%A0%B4%E7%B5%BD%E3%80%89%E3%80%88%E9%A1%94%E2%91%A0%E3%80%89.png',
+  F: 'https://raw.githubusercontent.com/NightLeft-0/anonymous-cup-assets/main/%E3%80%88%E7%B4%AB%E9%A8%8E%E3%80%89%E3%80%88%E9%A1%94%E2%91%A0%E3%80%89.png'
+};
+        const entries = [{ id: 'A', title: '剥落の面', author: 'ジェミ男', score: 42.8, rank: 5, award: '特殊部門 3冠' }, { id: 'B', title: '本人確認', author: 'ジピジ', score: 50.0, rank: 1, award: '総合優勝' }, { id: 'C', title: '最愛', author: '愚神', score: 48.8, rank: 3, award: '' }, { id: 'D', title: '退室簿', author: '蔵人', score: 49.0, rank: 2, award: '特殊部門 2冠' }, { id: 'E', title: '影の席', author: 'コパロット', score: 37.2, rank: 6, award: '' }, { id: 'F', title: '偽刻の騎士', author: '紫騎', score: 46.8, rank: 4, award: '' }];
+        const regularScores = { A: 36.8, B: 42.8, C: 38.8, D: 45.0, E: 34.8, F: 40.8 };
+        const regularRanked = [...entries].sort((a, b) => regularScores[b.id] - regularScores[a.id]);
+        const ranked = [...entries].sort((a, b) => a.rank - b.rank);
+        document.querySelector('#rank-table').innerHTML = ranked.map(e => `<div class="rank-row ${e.rank === 1 ? 'first' : ''}" aria-label="${e.rank}位 ${e.id} ${e.title} ${e.author} ${e.score.toFixed(1)}点"><span class="place">0${e.rank}</span><span class="entry-letter">${e.id}</span><span class="rank-title">${e.title}</span><span class="rank-author">${e.author}</span><span class="points">${e.score.toFixed(1)}<small>pt</small></span></div>`).join('');
+        document.querySelector('#works-grid').innerHTML = entries.map(e => `<article class="work"><div class="work-top"><b>${e.id}</b><span>NO.0${e.rank} / ${e.score.toFixed(1)}pt</span></div><h3>${e.title}</h3><span class="mini-award">${e.award}</span></article>`).join('');
+        document.querySelector('#score-bars').innerHTML = regularRanked.map((e, i) => `<div class="regular-score"><p class="muted">${i + 1}位 ${e.id}『${e.title}』</p><div class="score-line" aria-label="通常採点 ${i + 1}位 ${e.id} ${e.title} ${regularScores[e.id].toFixed(1)}点"><span>${e.id}</span><div class="bar-track"><div class="bar" style="width:${regularScores[e.id] / 50 * 100}%;${i === 0 ? 'background:var(--acid)' : ''}"></div></div><span class="score-value">${regularScores[e.id].toFixed(1)}</span></div></div>`).join('');
+        document.querySelector('#reveal-grid').innerHTML = entries.map(e => `
+  <button class="reveal-card" data-id="${e.id}" aria-pressed="false" aria-label="${e.id} ${e.title}の作者を公開">
+    <span class="reveal-letter">${e.id}</span>
+    <span class="reveal-title">${e.title}</span>
+    <span class="reveal-name">正体を見る＋</span>
+    ${entryImages[e.id] ? `<img class="reveal-image" src="${entryImages[e.id]}" alt="${e.author}の顔画像" hidden decoding="async">` : ''}
+  </button>
+`).join('');
+        function reveal(button, open) { const e = entries.find(e => e.id === button.dataset.id); button.setAttribute('aria-pressed', String(open)); button.setAttribute('aria-label', `${e.id} ${e.title} ${open ? '作者 ' + e.author + '。札を伏せる' : 'の作者を公開'}`); button.querySelector('.reveal-name').textContent = open ? '作者：' + e.author : '正体を見る＋'; const image = button.querySelector('.reveal-image'); if (image) image.hidden = !open; }
+        function updateStatus() { const count = document.querySelectorAll('.reveal-card[aria-pressed="true"]').length; document.querySelector('#reveal-status').textContent = `公開済み ${count} / 6`; document.querySelector('#reveal-all').textContent = count === 6 ? '全員の札を伏せる ↙' : '全員の正体を開く ↗'; }
+        document.querySelectorAll('.reveal-card').forEach(b => b.addEventListener('click', () => { reveal(b, b.getAttribute('aria-pressed') !== 'true'); updateStatus(); }));
+        document.querySelector('#reveal-all').addEventListener('click', () => { const open = document.querySelectorAll('.reveal-card[aria-pressed="true"]').length !== 6; document.querySelectorAll('.reveal-card').forEach(b => reveal(b, open)); updateStatus(); });
+    </script>
+</body>
+
+</html>
